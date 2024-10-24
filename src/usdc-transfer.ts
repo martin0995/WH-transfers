@@ -10,11 +10,8 @@ import {
 } from '@wormhole-foundation/sdk';
 import evm from '@wormhole-foundation/sdk/evm';
 import solana from '@wormhole-foundation/sdk/solana';
-import * as dotenv from 'dotenv';
 import { SignerStuff, getSigner } from './helpers/helpers';
-
-// Load environment variables
-dotenv.config();
+import { USDC_TESTNET_ADDRESSES, USDC_MAINNET_ADDRESSES } from './config/usdc-addresses';
 
 (async function () {
 	// Initialize the Wormhole object for the Testnet environment and add supported chains (evm and solana)
@@ -29,15 +26,8 @@ dotenv.config();
 	const source = await getSigner(sendChain);
 	const destination = await getSigner(rcvChain);
 
-	// Define the USDC token address
-	// Avalanche:
-	const usdcTokenAddress = '0x5425890298aed601595a70ab815c96711a31bc65';
-
-	//USDC token address on Solana
-	// const usdcTokenAddress = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
-
 	// Shortcut to allow transferring USDC token
-	const token = Wormhole.tokenId(sendChain.chain, usdcTokenAddress);
+	const token = Wormhole.tokenId(sendChain.chain, USDC_TESTNET_ADDRESSES['avalancheFuji']);
 
 	// Define the amount of USDC to transfer (e.g., 0.2 USDC with 6 decimals)
 	const amt = '1';
