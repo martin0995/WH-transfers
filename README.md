@@ -23,7 +23,7 @@ cross-chain-transfer/
 Ensure you have the following installed:
 
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed on your machine
- - A wallet with a private key, funded with native tokens (Testnet or Mainnet) for gas fees
+ - A wallet with a private key, funded with [native tokens](https://faucets.chain.link/) (Testnet or Mainnet) for gas fees
 
 ## Setup and Usage
 
