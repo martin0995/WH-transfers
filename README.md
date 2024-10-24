@@ -29,20 +29,20 @@ Ensure you have the following installed:
 
 Follow these steps to clone the repository, set up environment variables, and perform token transfers.
 
-1. Clone the Repository
+**1. Clone the Repository**
 
 ```bash
 git clone https://github.com/your-username/cross-chain-transfer.git
 cd cross-chain-transfer
 ```
 
-2. Install Dependencies
+**2. Install Dependencies**
 
 ```bash
 npm install
 ```
 
-3. Set Up Environment Variables
+**3. Set Up Environment Variables**
 
 Create a `.env` file in the root directory and add your private keys:
 
@@ -56,17 +56,17 @@ SOL_PRIVATE_KEY="INSERT_PRIVATE_KEY"
 
 Ensure these keys are valid and have the necessary permissions to perform transfers.
 
-4. Compile the TypeScript Files (Optional)
+**4. Compile the TypeScript Files (Optional)**
 
-    This step is optional as scripts will compile automatically during execution. However, to manually compile:
+This step is optional as scripts will compile automatically during execution. However, to manually compile:
 
 ```bash
 npx tsc
 ```
 
-5. Perform a Native Token Transfer
+**5. Perform a Native Token Transfer**
 
-    To initiate a native token transfer across chains, run:
+To initiate a native token transfer across chains, run:
 
 ```bash
 npm run transfer
@@ -74,9 +74,9 @@ npm run transfer
 
 > Note: This script is set up to transfer a native token from Solana to Avalanche using the Wormhole SDK. You can modify the source and destination chains within `src/transfer.ts`.
 
-6. Perform a USDC Token Transfer
+**6. Perform a USDC Token Transfer**
 
-    To transfer USDC from one chain to another, run:
+To transfer USDC from one chain to another, run:
 
 ```bash
 npm run transfer:usdc
@@ -100,5 +100,5 @@ You can customize the following options within the scripts:
 
 ## Troubleshooting
 
- - Missing environment variables: Make sure .env is properly set up and keys are valid.
+ - Missing environment variables: Make sure `.env` is properly set up and keys are valid.
  - Unsupported Platform Error: Verify that the chains are compatible and supported by the Wormhole SDK.
