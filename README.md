@@ -88,17 +88,17 @@ This script uses pre-configured USDC token addresses on Solana and Avalanche. Up
 
 You can customize the following options within the scripts:
 
- - Source and Destination Chains - Modify sendChain and rcvChain in `transfer.ts` and `usdc-transfer.ts`
- - Token Address - Change the token address if transferring assets other than the default USDC
- - Amount and Transfer Settings - Adjust amt, automatic, and nativeGas to suit your needs
+ - **Source and Destination Chains** - modify `sendChain` and rcvChain in `transfer.ts` and `usdc-transfer.ts`
+ - **Token Address** - change the token address if transferring assets other than the default USDC
+ - **Amount and Transfer Settings** - adjust `amt`, `automatic`, and `nativeGas` to suit your needs
 
 ## Notes
 
- - Ensure that the Wormhole Testnet is operational when running scripts.
+ - Please make sure that the Wormhole Testnet is operational when running scripts.
  - Check your wallet balances and transfer fees before initiating transfers.
- - For production use, switch from Testnet to Mainnet and update configuration accordingly.
+ - For production use, switch from Testnet to Mainnet and update the configuration accordingly.
 
 ## Troubleshooting
 
- - Missing environment variables: Make sure `.env` is properly set up and keys are valid.
- - Unsupported Platform Error: Verify that the chains are compatible and supported by the Wormhole SDK.
+ - **Missing environment variables** - ensure `.env` is correctly set up and keys are valid
+ - **Unsupported platform error** - verify that the chains are compatible and supported by the Wormhole SDK
