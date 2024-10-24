@@ -1,6 +1,6 @@
 # Cross-Chain Token Transfer with Wormhole SDK
 
-This project demonstrates how to perform cross-chain token transfers using the Wormhole SDK. It supports transferring native tokens and specific assets (e.g., USDC) across different blockchain networks, including EVM-compatible chains (e.g., Ethereum, Avalanche) and Solana. The solution uses Wormhole's Testnet environment for demonstration purposes.
+This project demonstrates how to perform cross-chain token transfers using the [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts). It supports transferring native tokens and specific assets (e.g., USDC) across different blockchain networks, including EVM-compatible chains (e.g., Ethereum, Avalanche) and Solana. The solution uses Wormhole's Testnet environment for demonstration purposes.
 
 ## Project Structure
 
