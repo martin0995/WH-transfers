@@ -102,7 +102,6 @@ async function tokenTransfer<N extends Network>(
 		route.destination.chain,
 		xfer.transfer
 	);
-	// console.log('Quote: ', quote);
 
 	if (xfer.transfer.automatic && quote.destinationToken.amount < 0)
 		throw 'The amount requested is too low to cover the fee and any native gas requested.';
