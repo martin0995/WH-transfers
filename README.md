@@ -12,7 +12,8 @@ cross-chain-transfer/
 │   ├── helpers/
 │   │   └── helpers.ts      # Helper functions for signer setup and environment variables
 │   ├── native-transfer.ts  # Script to perform a native token transfer between chains
-│   └── usdc-transfer.ts    # Script to perform a USDC token transfer between chains
+│   ├── usdc-transfer.ts    # Script to perform a USDC token transfer between chains
+│   └── tx-recover.ts       # Script to recover and manually complete a token transfer using a transaction ID
 ├── .env                    # Environment variables for private keys (not included in the repo)
 ├── package.json            # Project dependencies and scripts
 └── tsconfig.json           # TypeScript configuration
@@ -49,22 +50,16 @@ Create a `.env` file in the root directory and add your private keys:
 ```bash
 ETH_PRIVATE_KEY="INSERT_PRIVATE_KEY"
 SOL_PRIVATE_KEY="INSERT_PRIVATE_KEY"
+SUI_PRIVATE_KEY="INSERT_SUI_MNEMONIC"
 ```
 
- - ETH_PRIVATE_KEY - private key for an Ethereum-compatible wallet
- - SOL_PRIVATE_KEY - private key for a Solana wallet
+ - **ETH_PRIVATE_KEY** - private key for an Ethereum-compatible wallet
+ - **SOL_PRIVATE_KEY** - private key for a Solana wallet
+ - **SUI_PRIVATE_KEY** - mnemonic for a Sui wallet
 
-Ensure these keys are valid and have the necessary permissions to perform transfers.
+>Important: For Sui, you must provide a mnemonic instead of a private key. Ensure these keys are valid and have the necessary permissions to perform transfers.
 
-**4. Compile the TypeScript Files (Optional)**
-
-This step is optional as scripts will compile automatically during execution. However, to manually compile:
-
-```bash
-npx tsc
-```
-
-**5. Perform a Native Token Transfer**
+**4. Perform a Native Token Transfer**
 
 To initiate a native token transfer across chains, run:
 
@@ -74,7 +69,7 @@ npm run transfer:native
 
 > Note: This script is set up to transfer a native token from Solana to Avalanche using the Wormhole SDK. You can modify the source and destination chains within `src/native-transfer.ts`.
 
-**6. Perform a USDC Token Transfer**
+**5. Perform a USDC Token Transfer**
 
 To transfer USDC from one chain to another, run:
 
@@ -83,6 +78,29 @@ npm run transfer:usdc
 ```
 
 This script uses pre-configured USDC token addresses on Solana and Avalanche. Update the address in `src/usdc-transfer.ts` if transferring to different chains or using other assets.
+
+**6. Recover and Manually Complete a Token Transfer**
+
+If a token transfer has been initiated but was not completed, you can manually recover and attempt to finish the transfer using the transaction ID. This can be helpful in cases where the automatic process does not finalize the transfer.
+
+**To recover a transaction:**
+
+**1. Set the Transaction ID:**
+
+    Open `src/tx-recover.ts` and provide the correct transaction ID (txid) for the transfer you want to recover. This ID will be used to fetch the transfer details and attempt to complete it on the destination chain.
+
+```typescript
+// In src/tx-recover.ts
+let recoverTxid = 'INSERT_YOUR_TRANSACTION_ID_HERE';
+```
+
+**2. Run the Recovery Command:**
+
+    Once you have set the transaction ID, run the following command:
+
+```bash
+npm run transfer:recover
+```
 
 ## Configuration
 
@@ -94,9 +112,10 @@ You can customize the following options within the scripts:
 
 ## Notes
 
- - Please make sure that the Wormhole Testnet is operational when running scripts.
- - Check your wallet balances and transfer fees before initiating transfers.
- - For production use, switch from Testnet to Mainnet and update the configuration accordingly.
+ - Unlike other platforms, Sui requires a mnemonic instead of a private key for authentication. Ensure your `.env` file includes this correctly
+ - Please make sure that the Wormhole Testnet is operational when running scripts
+ - Check your wallet balances and transfer fees before initiating transfers
+ - For production use, switch from Testnet to Mainnet and update the configuration accordingly
 
 ## Troubleshooting
 
