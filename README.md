@@ -94,7 +94,7 @@ let recoverTxid = 'INSERT_YOUR_TRANSACTION_ID';
 
 **b. Run the Recovery Command:**
 
-    Once you have set the transaction ID, run the following command:
+Once you have set the transaction ID, run the following command:
 
 ```bash
 npm run transfer:recover
