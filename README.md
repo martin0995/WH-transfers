@@ -10,12 +10,12 @@ The project is organized as follows:
 cross-chain-transfer/
 ├── src/
 │   ├── helpers/
-│   │   └── helpers.ts    # Helper functions for signer setup and environment variables
-│   ├── transfer.ts       # Script to perform a native token transfer between chains
-│   └── usdc-transfer.ts  # Script to perform a USDC token transfer between chains
-├── .env                  # Environment variables for private keys (not included in the repo)
-├── package.json          # Project dependencies and scripts
-└── tsconfig.json         # TypeScript configuration
+│   │   └── helpers.ts      # Helper functions for signer setup and environment variables
+│   ├── native-transfer.ts  # Script to perform a native token transfer between chains
+│   └── usdc-transfer.ts    # Script to perform a USDC token transfer between chains
+├── .env                    # Environment variables for private keys (not included in the repo)
+├── package.json            # Project dependencies and scripts
+└── tsconfig.json           # TypeScript configuration
 ```
 
 ## Prerequisites
@@ -32,8 +32,8 @@ Follow these steps to clone the repository, set up environment variables, and pe
 **1. Clone the Repository**
 
 ```bash
-git clone https://github.com/your-username/cross-chain-transfer.git
-cd cross-chain-transfer
+git clone https://github.com/martin0995/WH-transfers.git
+cd WH-transfers
 ```
 
 **2. Install Dependencies**
@@ -69,10 +69,10 @@ npx tsc
 To initiate a native token transfer across chains, run:
 
 ```bash
-npm run transfer
+npm run transfer:native
 ```
 
-> Note: This script is set up to transfer a native token from Solana to Avalanche using the Wormhole SDK. You can modify the source and destination chains within `src/transfer.ts`.
+> Note: This script is set up to transfer a native token from Solana to Avalanche using the Wormhole SDK. You can modify the source and destination chains within `src/native-transfer.ts`.
 
 **6. Perform a USDC Token Transfer**
 
@@ -88,7 +88,7 @@ This script uses pre-configured USDC token addresses on Solana and Avalanche. Up
 
 You can customize the following options within the scripts:
 
- - **Source and Destination Chains** - modify `sendChain` and rcvChain in `transfer.ts` and `usdc-transfer.ts`
+ - **Source and Destination Chains** - modify `sendChain` and `rcvChain` in `native-transfer.ts` and `usdc-transfer.ts`
  - **Token Address** - change the token address if transferring assets other than the default USDC
  - **Amount and Transfer Settings** - adjust `amt`, `automatic`, and `nativeGas` to suit your needs
 
