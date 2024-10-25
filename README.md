@@ -59,7 +59,7 @@ SUI_PRIVATE_KEY="INSERT_SUI_MNEMONIC"
 
 >Important: For Sui, you must provide a mnemonic instead of a private key. Ensure these keys are valid and have the necessary permissions to perform transfers.
 
-**4. Perform a Native Token Transfer**
+## Perform a Native Token Transfer
 
 To initiate a native token transfer across chains, run:
 
@@ -69,7 +69,7 @@ npm run transfer:native
 
 > Note: This script is set up to transfer a native token from Solana to Avalanche using the Wormhole SDK. You can modify the source and destination chains within `src/native-transfer.ts`.
 
-**5. Perform a USDC Token Transfer**
+## Perform a USDC Token Transfer
 
 To transfer USDC from one chain to another, run:
 
@@ -79,7 +79,7 @@ npm run transfer:usdc
 
 This script uses pre-configured USDC token addresses on Solana and Avalanche. If you are transferring to different chains or using other assets, update the address in `src/usdc-transfer.ts`.
 
-**6. Recover and Manually Complete a Token Transfer**
+## Recover and Manually Complete a Token Transfer
 
 If a token transfer has been initiated but not completed, you can manually recover it and attempt to finish it using the transaction ID. This can be helpful in cases where the automatic process does not finalize the transfer.
 
