@@ -33,7 +33,7 @@ import { USDC_TESTNET_ADDRESSES, USDC_MAINNET_ADDRESSES } from './config/usdc-ad
 	const amt = '1';
 
 	// Set automatic transfer to false for manual transfer
-	const automatic = true;
+	const automatic = false;
 
 	// The automatic relayer has the ability to deliver some native gas funds to the destination account
 	// The amount specified for native gas will be swapped for the native gas token according
@@ -45,28 +45,17 @@ import { USDC_TESTNET_ADDRESSES, USDC_MAINNET_ADDRESSES } from './config/usdc-ad
 		? Number(await wh.getDecimals(token.chain, token.address))
 		: sendChain.config.nativeTokenDecimals;
 
-	// Set this to the transfer txid of the initiating transaction to recover a token transfer
-	// and attempt to fetch details about its progress.
-	let recoverTxid = undefined;
-
 	// Finally create and perform the transfer given the parameters set above
-	const xfer = !recoverTxid
-		? // Perform the token transfer
-		  await tokenTransfer(wh, {
-				token,
-				amount: amount.units(amount.parse(amt, decimals)),
-				source,
-				destination,
-				delivery: {
-					automatic,
-					nativeGas: nativeGas ? amount.units(amount.parse(nativeGas, decimals)) : undefined,
-				},
-		  })
-		: // Recover the transfer from the originating txid
-		  await TokenTransfer.from(wh, {
-				chain: source.chain.chain,
-				txid: recoverTxid,
-		  });
+	const xfer = await tokenTransfer(wh, {
+		token,
+		amount: amount.units(amount.parse(amt, decimals)),
+		source,
+		destination,
+		delivery: {
+			automatic,
+			nativeGas: nativeGas ? amount.units(amount.parse(nativeGas, decimals)) : undefined,
+		},
+	});
 
 	process.exit(0);
 })();
