@@ -10,15 +10,16 @@ import {
 } from '@wormhole-foundation/sdk';
 import evm from '@wormhole-foundation/sdk/evm';
 import solana from '@wormhole-foundation/sdk/solana';
+import sui from '@wormhole-foundation/sdk/sui';
 import { SignerStuff, getSigner } from './helpers/helpers';
 
 (async function () {
 	// Initialize the Wormhole object for the Testnet environment and add supported chains (evm and solana)
-	const wh = await wormhole('Testnet', [evm, solana]);
+	const wh = await wormhole('Testnet', [evm, solana, sui]);
 
 	// Grab chain Contexts -- these hold a reference to a cached rpc client
-	const sendChain = wh.getChain('Solana');
-	const rcvChain = wh.getChain('Avalanche');
+	const sendChain = wh.getChain('Avalanche');
+	const rcvChain = wh.getChain('Sui');
 
 	// Get signer from local key but anything that implements
 	// Signer interface (e.g. wrapper around web wallet) should work
@@ -28,44 +29,33 @@ import { SignerStuff, getSigner } from './helpers/helpers';
 	// Shortcut to allow transferring native gas token
 	const token = Wormhole.tokenId(sendChain.chain, 'native');
 
-	// Define the amount of USDC to transfer (e.g., 0.2 USDC with 6 decimals)
-	const amt = '1';
+	// Define the amount of tokens to transfer
+	const amt = '0.01';
 
 	// Set automatic transfer to false for manual transfer
-	const automatic = true;
+	const automatic = false;
 
 	// The automatic relayer has the ability to deliver some native gas funds to the destination account
 	// The amount specified for native gas will be swapped for the native gas token according
 	// to the swap rate provided by the contract, denominated in native gas tokens
-	const nativeGas = automatic ? '0.0093' : undefined;
+	const nativeGas = automatic ? '0.1' : undefined;
 
 	// Used to normalize the amount to account for the tokens decimals
 	const decimals = isTokenId(token)
 		? Number(await wh.getDecimals(token.chain, token.address))
 		: sendChain.config.nativeTokenDecimals;
 
-	// Set this to the transfer txid of the initiating transaction to recover a token transfer
-	// and attempt to fetch details about its progress.
-	let recoverTxid = undefined;
-
-	// Finally create and perform the transfer given the parameters set above
-	const xfer = !recoverTxid
-		? // Perform the token transfer
-		  await tokenTransfer(wh, {
-				token,
-				amount: amount.units(amount.parse(amt, decimals)),
-				source,
-				destination,
-				delivery: {
-					automatic,
-					nativeGas: nativeGas ? amount.units(amount.parse(nativeGas, decimals)) : undefined,
-				},
-		  })
-		: // Recover the transfer from the originating txid
-		  await TokenTransfer.from(wh, {
-				chain: source.chain.chain,
-				txid: recoverTxid,
-		  });
+	// Perform the token transfer if no recovery transaction ID is provided
+	const xfer = await tokenTransfer(wh, {
+		token,
+		amount: amount.units(amount.parse(amt, decimals)),
+		source,
+		destination,
+		delivery: {
+			automatic,
+			nativeGas: nativeGas ? amount.units(amount.parse(nativeGas, decimals)) : undefined,
+		},
+	});
 
 	process.exit(0);
 })();
