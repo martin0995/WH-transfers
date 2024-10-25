@@ -77,24 +77,22 @@ To transfer USDC from one chain to another, run:
 npm run transfer:usdc
 ```
 
-This script uses pre-configured USDC token addresses on Solana and Avalanche. Update the address in `src/usdc-transfer.ts` if transferring to different chains or using other assets.
+This script uses pre-configured USDC token addresses on Solana and Avalanche. If you are transferring to different chains or using other assets, update the address in `src/usdc-transfer.ts`.
 
 **6. Recover and Manually Complete a Token Transfer**
 
-If a token transfer has been initiated but was not completed, you can manually recover and attempt to finish the transfer using the transaction ID. This can be helpful in cases where the automatic process does not finalize the transfer.
+If a token transfer has been initiated but not completed, you can manually recover it and attempt to finish it using the transaction ID. This can be helpful in cases where the automatic process does not finalize the transfer.
 
-**To recover a transaction:**
+**a. Set the Transaction ID:**
 
-**1. Set the Transaction ID:**
-
-    Open `src/tx-recover.ts` and provide the correct transaction ID (txid) for the transfer you want to recover. This ID will be used to fetch the transfer details and attempt to complete it on the destination chain.
+Open `src/tx-recover.ts` and provide the correct transaction ID (`txid`) for the transfer you want to recover. This ID will fetch the transfer details and attempt to complete it on the destination chain.
 
 ```typescript
 // In src/tx-recover.ts
-let recoverTxid = 'INSERT_YOUR_TRANSACTION_ID_HERE';
+let recoverTxid = 'INSERT_YOUR_TRANSACTION_ID';
 ```
 
-**2. Run the Recovery Command:**
+**b. Run the Recovery Command:**
 
     Once you have set the transaction ID, run the following command:
 
