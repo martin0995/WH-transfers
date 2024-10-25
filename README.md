@@ -119,3 +119,5 @@ You can customize the following options within the scripts:
 
  - **Missing environment variables** - ensure `.env` is correctly set up and keys are valid
  - **Unsupported platform error** - verify that the chains are compatible and supported by the Wormhole SDK
+ - **Transaction Not Going Through** - if the transaction doesn't go through, check if the wrapped token exists on the destination chain. This issue is more common with native tokens
+ - **Incomplete Transfers** - if a transfer was not completed, use `tx-recover.ts` to manually finish the transaction by providing the `txid`
