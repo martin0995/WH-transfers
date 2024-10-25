@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "transfer": "npx tsx src/transfer.ts",
+    "transfer:native": "npx tsx src/native-transfer.ts",
     "transfer:usdc": "npx tsx src/usdc-transfer.ts"
   },
   "keywords": [],
