@@ -9,14 +9,17 @@ The project is organized as follows:
 ```plaintext
 cross-chain-transfer/
 ├── src/
+│   ├── config/
+│   │   └── usdc-addresses.ts   # Configuration file for USDC token contract addresses on supported chains
 │   ├── helpers/
-│   │   └── helpers.ts      # Helper functions for signer setup and environment variables
-│   ├── native-transfer.ts  # Script to perform a native token transfer between chains
-│   ├── usdc-transfer.ts    # Script to perform a USDC token transfer between chains
-│   └── tx-recover.ts       # Script to recover and manually complete a token transfer using a transaction ID
-├── .env                    # Environment variables for private keys (not included in the repo)
-├── package.json            # Project dependencies and scripts
-└── tsconfig.json           # TypeScript configuration
+│   │   └── helpers.ts          # Helper functions for signer setup and environment variables
+│   ├── scripts/
+│   │   └── native-transfer.ts  # Script to perform a native token transfer between chains
+│   │   └── usdc-transfer.ts    # Script to perform a USDC token transfer between chains
+│   │   └── tx-recover.ts       # Script to recover and manually complete a token transfer using a transaction ID
+├── .env                        # Environment variables for private keys (not included in the repo)
+├── package.json                # Project dependencies and scripts
+└── tsconfig.json               # TypeScript configuration
 ```
 
 ## Prerequisites
