@@ -5,9 +5,9 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"transfer:native": "npx tsx src/native-transfer.ts",
-		"transfer:usdc": "npx tsx src/usdc-transfer.ts",
-		"transfer:recover": "npx tsx src/tx-recover.ts"
+		"transfer:native": "npx tsx src/scripts/native-transfer.ts",
+		"transfer:usdc": "npx tsx src/scripts/usdc-transfer.ts",
+		"transfer:recover": "npx tsx src/scripts/tx-recover.ts"
 	},
 	"keywords": [],
 	"author": "",
