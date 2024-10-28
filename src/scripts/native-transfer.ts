@@ -11,15 +11,15 @@ import {
 import evm from '@wormhole-foundation/sdk/evm';
 import solana from '@wormhole-foundation/sdk/solana';
 import sui from '@wormhole-foundation/sdk/sui';
-import { SignerStuff, getSigner } from './helpers/helpers';
+import { SignerStuff, getSigner } from '../helpers/helpers';
 
 (async function () {
 	// Initialize the Wormhole object for the Testnet environment and add supported chains (evm and solana)
 	const wh = await wormhole('Testnet', [evm, solana, sui]);
 
 	// Grab chain Contexts -- these hold a reference to a cached rpc client
-	const sendChain = wh.getChain('Avalanche');
-	const rcvChain = wh.getChain('Sui');
+	const sendChain = wh.getChain('Solana');
+	const rcvChain = wh.getChain('Avalanche');
 
 	// Get signer from local key but anything that implements
 	// Signer interface (e.g. wrapper around web wallet) should work
@@ -30,7 +30,7 @@ import { SignerStuff, getSigner } from './helpers/helpers';
 	const token = Wormhole.tokenId(sendChain.chain, 'native');
 
 	// Define the amount of tokens to transfer
-	const amt = '0.01';
+	const amt = '1';
 
 	// Set automatic transfer to false for manual transfer
 	const automatic = false;

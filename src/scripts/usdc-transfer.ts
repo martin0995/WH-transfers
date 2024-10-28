@@ -10,8 +10,8 @@ import {
 } from '@wormhole-foundation/sdk';
 import evm from '@wormhole-foundation/sdk/evm';
 import solana from '@wormhole-foundation/sdk/solana';
-import { SignerStuff, getSigner } from './helpers/helpers';
-import { USDC_TESTNET_ADDRESSES, USDC_MAINNET_ADDRESSES } from './config/usdc-addresses';
+import { SignerStuff, getSigner } from '../helpers/helpers';
+import { USDC_TESTNET_ADDRESSES, USDC_MAINNET_ADDRESSES } from '../config/usdc-addresses';
 
 (async function () {
 	// Initialize the Wormhole object for the Testnet environment and add supported chains (evm and solana)
